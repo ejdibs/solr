@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.impl.CloudSolrClient;
 import org.apache.solr.client.solrj.io.SolrClientCache;
 import org.apache.solr.client.solrj.io.Tuple;
@@ -212,7 +213,7 @@ public class ScoreNodesStream extends TupleStream implements Expressible
     params.add(TermsParams.TERMS_LIST, builder.toString());
     params.add(TermsParams.TERMS_LIMIT, Integer.toString(nodes.size()));
 
-    QueryRequest request = new QueryRequest(params);
+    QueryRequest request = new QueryRequest(params, SolrRequest.METHOD.POST);
 
 
     try {
